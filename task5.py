@@ -1,3 +1,6 @@
+#Ask user for 5 words
+#Create world salad using between 10-20 random words from input
+
 import random
 x = random.randint(10, 21)
 while True:

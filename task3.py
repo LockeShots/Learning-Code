@@ -1,3 +1,5 @@
+#Read list of numbers & print those divisible by 4
+
 numberlist = list(range(0, 30))
 
 print('The numbers between 0 and 30 not divisible by 4 are: ')
