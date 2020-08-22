@@ -1,3 +1,6 @@
+#Ask user for statement
+#If statement begins with 's', print to file
+
 def print_input():
     f = open("s-statement.txt", 'a')
     f.write (statement + "\n")
