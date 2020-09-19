@@ -1,4 +1,5 @@
 #Ask user for 12h times, convert to 24h
+#(Very sloppy, need to tighten code!)
 
 timeinput = input("Please enter a 12h time with the format 0:00am/pm: ")
 twelvehour = timeinput.split(":")
