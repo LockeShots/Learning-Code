@@ -1,0 +1,12 @@
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.Form1.resources
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.Resources.resources
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.vbproj.GenerateResource.cache
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.vbproj.CoreCompileInputs.cache
+C:\Code\git\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Code\git\Calculator\Calculator\bin\Debug\Calculator.exe
+C:\Code\git\Calculator\Calculator\bin\Debug\Calculator.pdb
+C:\Code\git\Calculator\Calculator\bin\Debug\Calculator.xml
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.xml
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Code\git\Calculator\Calculator\obj\Debug\Calculator.vbprojAssemblyReference.cache
