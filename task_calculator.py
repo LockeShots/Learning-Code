@@ -31,14 +31,26 @@ def calc_str(text, previous):
 
     answer = None
 
-    if (operator == '+'):
-        answer = number1 + number2
-    if (operator == '*'):
-        answer = number1 * number2
-    if (operator == '%'):
-        answer = number1 % number2
-    if (operator == '/'):
-        answer = number1 / number2
+    #aa = {'0':'bob', "1":'jane', "2":'sally'}
+    #aa["1"]
+    import operator
+    ops = {
+        '+': operator.add,
+        '*': operator.mul,
+        #'plus': operator.add,
+    }
+    #alias = (
+    #    (operator.add, ('plus', 'PLUS', 'pp', '+'))
+    #)
+    answer = ops[operator](number1, number2)
+    #if (operator == '+'):
+    #    answer = number1 + number2
+    #if (operator == '*'):
+    #    answer = number1 * number2
+    #if (operator == '%'):
+    #    answer = number1 % number2
+    #if (operator == '/'):
+    #    answer = number1 / number2
     return round(answer, 3)
 
 
