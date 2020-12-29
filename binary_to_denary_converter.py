@@ -8,7 +8,7 @@ def Bin2Dec(binaryvalue):
     """
     binaryvalue = binaryvalue[::-1]
     output = 0
-    #Progresses through the reversed binary string and multiplies each index by the factor
+    #Progresses through the reversed binary string and multiplies each index by 2 * the factor of the index
     for i in range(len(binaryvalue)):
         output += int(binaryvalue[i]) * (2**i)
     return output
