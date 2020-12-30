@@ -1,10 +1,15 @@
 LOOKUP = {b: i for i, b in enumerate('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')}
 
 def convert_to_denary(inputnum, base):
-    output = 0
+    """
+    >>> 
+    """
     inputnumconverted = [LOOKUP[i] for i in reversed(inputnum)]
-    for i in range(len(inputnumconverted)):
-        output += inputnumconverted[i] * ((base)**i)
+    output = 0
+    for i, j in enumerate(inputnumconverted):
+        output += j * (base**i)
+    #for i in range(len(inputnumconverted)):
+    #    output += inputnumconverted[i] * ((base)**i)
     return output
 
 if __name__ == '__main__':
