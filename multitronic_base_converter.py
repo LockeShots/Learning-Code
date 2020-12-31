@@ -8,7 +8,7 @@ def convert_to_denary(inputnum, frombase, tobase):
     output = "" 
     while decval > 0:
         remainder = decval % (tobase)
-        output = str(remainder) + output
+        output = str({b: i for i, b in LOOKUP.items()}[remainder]) + output
         decval = int((decval - remainder) / (tobase))
     return output
 
