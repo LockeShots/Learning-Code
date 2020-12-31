@@ -3,23 +3,23 @@
 
 #Builds a dictionary using enumerate function on chosen order of chosen number symbols
 LOOKUP = {b: i for i, b in enumerate('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')}
-
+_LOOKUP = {b: i for i, b in LOOKUP.items()}
 #Function = 2 part process, converts user number to denary (if not already) and then from denary to specified base
 #Multipliers, factors and operands derived from user-specified base values 
 def convert(inputnum, frombase, tobase):
-    decval = 0
+    decsum = 0
     #Cconverts any extra symbols back to decimal numerals and reverses the input number
-    inputnumconverted = [LOOKUP[i] for i in reversed(inputnum)]
+    decval = (LOOKUP[i] for i in reversed(inputnum))
     
     #Converts user number to denary
-    for i, j in enumerate(inputnumconverted):
-        decval += j * (frombase**i)
+    for i, j in enumerate(decval):
+        decsum += j * (frombase**i)
     output = "" 
     #Converts (possibly new) denary number to specified base
-    while decval > 0:
-        remainder = decval % (tobase)
-        output = str({b: i for i, b in LOOKUP.items()}[remainder]) + output
-        decval = int((decval - remainder) / (tobase))
+    while decsum > 0:
+        remainder = decsum % (tobase)
+        output = str(_LOOKUP[remainder]) + output
+        decsum = int((decsum - remainder) / (tobase))
     return output
 
 if __name__ == '__main__':
