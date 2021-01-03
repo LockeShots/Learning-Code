@@ -2,11 +2,22 @@
 #Highest base determined by number of possible number symbols as defined in LOOKUP
 
 #Builds a dictionary using enumerate function on chosen order of chosen number symbols
+
 LOOKUP = {b: i for i, b in enumerate('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')}
 _LOOKUP = {b: i for i, b in LOOKUP.items()}
 #Function = 2 part process, converts user number to denary (if not already) and then from denary to specified base
 #Multipliers, factors and operands derived from user-specified base values 
 def convert(inputnum, frombase, tobase):
+    """
+    >>> convert('0', 2, 10)
+    '0'
+    >>> convert('1100', 2, 10)
+    '12'
+    >>> convert('12', 10, 2)
+    '1100'
+    >>> convert('AA', 16, 10)
+    '170'
+    """
     decsum = 0
     #Cconverts any extra symbols back to decimal numerals and reverses the input number
     decval = (LOOKUP[i] for i in reversed(inputnum))
@@ -20,6 +31,8 @@ def convert(inputnum, frombase, tobase):
         remainder = decsum % (tobase)
         output = str(_LOOKUP[remainder]) + output
         decsum = int((decsum - remainder) / (tobase))
+    if not output:
+        output = '0'
     return output
 
 if __name__ == '__main__':
