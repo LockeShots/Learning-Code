@@ -20,7 +20,7 @@ data = (
 )
 
 def dataparser():
-
+    heightdata = open('heightdata.txt')
 
 
 def colorizer(land_height):
