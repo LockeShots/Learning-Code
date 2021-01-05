@@ -9,31 +9,33 @@ namespace ClassTestMock
     // Create calculator class.
     class Calculator
     {
-            // Create jobprice method within Calculator class.
-            // Have to specify datatype again within method.
-            // This time method is not static.
-            public double jobprice(double tyrenum, string tyretype, string ispipereq)
-            {
-            // Create new dictionary object, specifying data types.
-                Dictionary<string, double> pricing =
-                                new Dictionary<string, double>();
-                pricing.Add("b", 29.99);
-                pricing.Add("p", 49.99);
-                pricing.Add("exhaust", 69.99);
+        // Create new dictionary object, specifying data types.
+        Dictionary<string, double> pricing = new Dictionary<string, double>();
 
-            // Create if statements. Very similar syntax to Python here.
-                double totalprice = 0;
-                if (tyrenum <= 3)
-                {totalprice = pricing[tyretype] * tyrenum;}
-                if (tyrenum >= 4)
-                {totalprice = pricing[tyretype] * tyrenum * 0.8;}
-            // NB being mindful the difference between "" for string declaration and '' for single character declaration.
-                if (ispipereq == "y")
-                {totalprice += pricing["exhaust"];}
-                if (tyrenum > 0 && ispipereq == "y")
-                {totalprice -= 10;}
-                return totalprice;
-            }
+        public Calculator() {
+            pricing.Add("b", 29.99);
+            pricing.Add("p", 49.99);
+            pricing.Add("exhaust", 69.99);
+        }
+
+        // Create jobprice method within Calculator class.
+        // Have to specify datatype again within method.
+        // This time method is not static.
+        public double jobprice(double tyrenum, string tyretype, string ispipereq)
+        {
+        // Create if statements. Very similar syntax to Python here.
+            double totalprice = 0;
+            if (tyrenum <= 3)
+            {totalprice = pricing[tyretype] * tyrenum;}
+            if (tyrenum >= 4)
+            {totalprice = pricing[tyretype] * tyrenum * 0.8;}
+        // NB being mindful the difference between "" for string declaration and '' for single character declaration.
+            if (ispipereq == "y")
+            {totalprice += pricing["exhaust"];}
+            if (tyrenum > 0 && ispipereq == "y")
+            {totalprice -= 10;}
+            return totalprice;
+        }
     }
     
     // Created seperate class for the sake of clear context.
