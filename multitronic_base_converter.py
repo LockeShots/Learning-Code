@@ -29,7 +29,7 @@ def convert(inputnum, frombase, tobase):
     #Converts (possibly new) denary number to specified base
     while decsum > 0:
         remainder = decsum % (tobase)
-        output = str(_LOOKUP[remainder]) + output
+        output += str(_LOOKUP[remainder])
         decsum = int((decsum - remainder) / (tobase))
     if not output:
         output = '0'
