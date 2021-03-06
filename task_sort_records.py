@@ -1,5 +1,7 @@
 #Reads in a multi-line csv file, and allows a user to sort it by heading or/and perform a record search.
 #Specifies valid commnands to check user input against.
+#Need to do: Print from dictionaries without formatting. Probably need to build a function to prepare the data as I want to print it,
+#then call the function in my print statements and input requests, instead of plopping dictionary keys directly into f.strings.
 validin = {
         'menu' : ['1','2','3','4'],
         'yesno' : ['yes','y','no','n','menu'],
@@ -48,6 +50,8 @@ def linearSearch(query):
         return (f"{query} was not found in the dictionary.")
 
 if __name__ == '__main__':
+    #Sets a boolean variable menu to True, and uses a conditional while loop to print menu options before setting menu to false,
+    #to prevent recursive loop.
     menu = True
     while menu == True:
         print ('''
@@ -58,6 +62,8 @@ if __name__ == '__main__':
         ''')
         menu = False
         menuchoice = input("Please choose an option: ")
+        #Thought about building a dictionary of functions and calling a given function directly based on the menu number entered.
+        #Seemed more complicated than it was worth.
         while menuchoice not in validin['menu']:
             menuchoice = input(f"Please enter a valid number: ")
         if menuchoice == '1':
@@ -65,6 +71,7 @@ if __name__ == '__main__':
             while byfield not in validin['fields']:
                 byfield = input(f"Please enter {validin['fields']}: ")
             if byfield == 'menu':
+                #Anytime menu becomes 'True' again, main menu screen is printed once and process restarts.
                 menu = True
             elif byfield in validin['fields']:
                 listofdicts == bubbleSort(listofdicts, byfield)
@@ -75,6 +82,7 @@ if __name__ == '__main__':
                 print(linearSearch(query))
                 menu = True
         elif menuchoice == '3':
+                #This will take into account any amount of sorting and resorting that has been performed.
                 print (listofdicts)
                 menu = True
         elif menuchoice == '4':
