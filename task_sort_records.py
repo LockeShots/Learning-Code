@@ -44,7 +44,7 @@ def linearSearch(query):
             for key, value in i.items():
                 if query in value:
                     present = True
-                    return (f"{query} was found in the following record: {i}")
+                    return (f"{query} was found in the {key} field of the following record: {i}")
 #I don't break the loop here in case the same name might be found in multiple records.
     if present == False:
         return (f"{query} was not found in the dictionary.")
