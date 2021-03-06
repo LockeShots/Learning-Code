@@ -49,6 +49,14 @@ def linearSearch(query):
     if present == False:
         return (f"{query} was not found in the dictionary.")
 
+def printDict(dict):
+    #The cleandict strips the null values from any dictionary sent here.
+    #Put this here instead of making a new function so I can apply it to nested dictionaries directly.
+    #Not sure why it isn't working.
+    cleandict = {k: v for k, v in dict.items() if k is not None}
+    for key, value in cleandict.items():
+        print(key, ' : ', value)
+
 if __name__ == '__main__':
     #Sets a boolean variable menu to True, and uses a conditional while loop to print menu options before setting menu to false,
     #to prevent recursive loop.
@@ -69,6 +77,7 @@ if __name__ == '__main__':
         while menuchoice not in validin['menu']:
             menuchoice = input(f"Please enter a valid number: ")
         if menuchoice == '1':
+            #Need a way of stripping the formatting from this dictionary call.
             byfield = input(f"Which field do you wish to sort by? valid inputs are {validin['fields']}: ")
             while byfield not in validin['fields']:
                 byfield = input(f"Please enter {validin['fields']}: ")
@@ -85,7 +94,13 @@ if __name__ == '__main__':
                 menu = True
         elif menuchoice == '3':
                 #This will take into account any amount of sorting and resorting that has been performed.
-                print (listofdicts)
+                count = 1
+                for i in listofdicts:
+                    print (f'''
+                    Record {count}
+                    ''')
+                    print (printDict(i))
+                    count += 1
                 menu = True
         elif menuchoice == '4':
             quit()
