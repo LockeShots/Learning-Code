@@ -1,7 +1,5 @@
 #Reads in a multi-line csv file, and allows a user to sort it by heading or/and perform a record search.
 #Specifies valid commnands to check user input against.
-#Need to do: Print from dictionaries without formatting. Probably need to build a function to prepare the data as I want to print it,
-#then call the function in my print statements and input requests, instead of plopping dictionary keys directly into f.strings.
 validin = {
         'menu' : ['1','2','3','4'],
         'yesno' : ['yes','y','no','n','menu'],
@@ -28,7 +26,7 @@ for line in f:
 def printDict(dict):
     #The cleandict strips the null values from any dictionary sent here.
     #Put this here instead of making a new function so I can apply it to nested dictionaries directly.
-    #Not sure why it isn't working.
+    #Not sure why it isn't working!
     cleandict = {k: v for k, v in dict.items() if k is not None}
     for key, value in cleandict.items():
         print(key, ' : ', value)
