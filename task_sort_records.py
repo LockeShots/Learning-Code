@@ -1,16 +1,21 @@
 #Reads in a multi-line csv file, and allows a user to sort it by heading or/and perform a record search.
-
+#Specifies valid commnands to check user input against.
+validin = {
+        'menu' : ['1','2','3','4'],
+        'yesno' : ['yes','y','no','n','menu'],
+        'fields' : ['First Name','Surname','Date of Birth','Address','menu'],
+    }
+#Creates a list of dictionaries to fill with CSV data.
 listofdicts = []
 f = open("task_sort_records.csv", 'r')
-for line in f:
-    d = {}
-    worklist = [item.strip() for item in line.split("|")]
     #Creates a new list and fills each index with the stripped version of each seperate entry from the csv.
     #Could be done like this:
     #worklist = list(map(lambda ss: ss.strip() , worklist))
-    #haven't used this until I really understand it. =)
-
-    #This creates a dictionary with heading names as keys for each line of CSV and appends it to a list of dictionaries.
+    #Haven't used this until I really understand it. =)
+for line in f:
+    d = {}
+    worklist = [item.strip() for item in line.split("|")]
+    #This creates a dictionary with heading names as keys for each line of CSV and appends it to the list of dictionaries.
     listofdicts.append({
         "First Name": worklist[0],
         "Surname": worklist[1],
@@ -30,7 +35,7 @@ def bubbleSort(data, heading):
           has_changed = True
     return data
 
-def linearsearch(query):
+def linearSearch(query):
     present = False
     if present == False:
          for i in listofdicts:
@@ -42,28 +47,34 @@ def linearsearch(query):
         return (f"{query} was not found in the dictionary.")
 
 if __name__ == '__main__':
-    validyn = ['yes','y','no','n','exit']
-    validbyfield = ['First Name','Surname','Date of Birth','Address','exit']
-    bsort = (input('Do you wish to sort data? Valid inputs are "yes", "y", "no", or "n": '))
-    while bsort not in validyn:
-        bsort = (input('Please enter "yes", "y", "no", or "n" or type "exit" to quit: '))
-    if bsort == 'exit':
-        quit()
-    if bsort == 'yes' or bsort == 'y':
-        byfield = (input('Which field do you wish to sort by? Valid inputs are "First Name", "Surname", "Date of Birth" or "Address": '))
-        while byfield not in validbyfield:
-            byfield = (input('Please enter "First Name", "Surname", "Date of Birth" or "Address" or type "exit" to quit: '))
-        if byfield == 'exit':
+    menu = True
+    while menu == True:
+        print ('''
+        1) Sort data by heading
+        2) Search for a record
+        3) Print directory
+        4) Quit
+        ''')
+        menu = False
+        menuchoice = input("Please choose an option: ")
+        while menuchoice not in validin['menu']:
+            menuchoice = input(f"Please enter a valid number: ")
+        if menuchoice == '1':
+            byfield = input(f"Which field do you wish to sort by? valid inputs are {validin['fields']}: ")
+            while byfield not in validin['fields']:
+                byfield = input(f"Please enter {validin['fields']}: ")
+            if byfield == 'menu':
+                menu = True
+            elif byfield in validin['fields']:
+                listofdicts == bubbleSort(listofdicts, byfield)
+                print("Data sorted")
+                menu = True
+        elif menuchoice == '2':
+                query = (input('Which value do you wish to find? '))
+                print(linearSearch(query))
+                menu = True
+        elif menuchoice == '3':
+                print (listofdicts)
+                menu = True
+        elif menuchoice == '4':
             quit()
-        if byfield in validbyfield:
-            listofdicts == bubbleSort(listofdicts, byfield)
-    search = (input('Do you want to search the records?: '))
-    while search not in validyn:
-        search = (input('Please enter "yes", "y", "no", or "n" or type "exit" to quit: '))
-    if search == 'exit':
-        quit()
-    if search == 'yes' or search == 'y':
-        query = (input('Which value do you wish to find? '))
-        print(linearsearch(query))
-    if search == 'no' or search == 'n':
-        quit()
