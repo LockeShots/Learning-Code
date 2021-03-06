@@ -25,6 +25,14 @@ for line in f:
         "Address": worklist[3],
     })
 
+def printDict(dict):
+    #The cleandict strips the null values from any dictionary sent here.
+    #Put this here instead of making a new function so I can apply it to nested dictionaries directly.
+    #Not sure why it isn't working.
+    cleandict = {k: v for k, v in dict.items() if k is not None}
+    for key, value in cleandict.items():
+        print(key, ' : ', value)
+
 def bubbleSort(data, heading):
     has_changed = True
     while has_changed == True:
@@ -44,18 +52,11 @@ def linearSearch(query):
             for key, value in i.items():
                 if query in value:
                     present = True
-                    return (f"{query} was found in the {key} field of the following record: {i}")
+                    #Wanted to use "{(printDict(i))}" here, but it printed the record before the print statement, not sure why.
+                    return (f"{query} was found in the {key} field of the following record:{i}")
 #I don't break the loop here in case the same name might be found in multiple records.
     if present == False:
         return (f"{query} was not found in the dictionary.")
-
-def printDict(dict):
-    #The cleandict strips the null values from any dictionary sent here.
-    #Put this here instead of making a new function so I can apply it to nested dictionaries directly.
-    #Not sure why it isn't working.
-    cleandict = {k: v for k, v in dict.items() if k is not None}
-    for key, value in cleandict.items():
-        print(key, ' : ', value)
 
 if __name__ == '__main__':
     #Sets a boolean variable menu to True, and uses a conditional while loop to print menu options before setting menu to false,
@@ -90,6 +91,8 @@ if __name__ == '__main__':
                 menu = True
         elif menuchoice == '2':
                 query = (input('Which value do you wish to find? '))
+                #I would like to print this result neatly with 'Record (index number)' about it. Also have it work for multiple records
+                #containing the same value.
                 print(linearSearch(query))
                 menu = True
         elif menuchoice == '3':
