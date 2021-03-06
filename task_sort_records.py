@@ -55,6 +55,8 @@ if __name__ == '__main__':
     menu = True
     while menu == True:
         print ('''
+        Welcome to Locke's CSV parsing program. Please select one of the following options:
+
         1) Sort data by heading
         2) Search for a record
         3) Print directory
