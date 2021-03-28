@@ -16,13 +16,11 @@ def pairSort(datalist):
         if datalist[P] < datalist[P+1]:
             pairlist[current_pair].append(datalist[P])
             pairlist[current_pair].append(datalist[P+1])
-            P += 2
-            current_pair += 1
         else:
             pairlist[current_pair].append(datalist[P+1])
             pairlist[current_pair].append(datalist[P])
-            P += 2
-            current_pair += 1
+        P += 2
+        current_pair += 1
     print(pairlist)
     return pairlist
 
