@@ -1,45 +1,79 @@
+from functools import partial
+import operator
+
 #Reads in a multi-line csv file, and allows a user to sort it by heading or/and perform a record search.
 #Specifies valid commnands to check user input against.
 validin = {
-        'menu' : ['1','2','3','4'],
-        'yesno' : ['yes','y','no','n','menu'],
-        'fields' : ['First Name','Surname','Date of Birth','Address','menu'],
-    }
-#Creates a list of dictionaries to fill with CSV data.
-listofdicts = []
-f = open("task_sort_records.csv", 'r')
-    #Creates a new list and fills each index with the stripped version of each seperate entry from the csv.
-    #Could be done like this:
-    #worklist = list(map(lambda ss: ss.strip() , worklist))
-    #Haven't used this until I really understand it. =)
-for line in f:
-    d = {}
-    worklist = [item.strip() for item in line.split("|")]
-    #This creates a dictionary with heading names as keys for each line of CSV and appends it to the list of dictionaries.
-    listofdicts.append({
-        "First Name": worklist[0],
-        "Surname": worklist[1],
-        "Date of Birth": worklist[2],
-        "Address": worklist[3],
-    })
+    'menu' : ('1','2','3','4'),
+    'yesno' : ('yes','y','no','n','menu'),
+    'fields' : ('First Name','Surname','Date of Birth','Address','menu'),
+}
 
-def printDict(dict):
-    #The cleandict strips the null values from any dictionary sent here.
-    #Put this here instead of making a new function so I can apply it to nested dictionaries directly.
-    #Not sure why it isn't working!
-    cleandict = {k: v for k, v in dict.items() if k is not None}
-    for key, value in cleandict.items():
+def load_data(filename="task_sort_records.csv", func_open=open):
+    #Creates a list of dictionaries to fill with CSV data.
+    listofdicts = []
+    f = func_open(filename, 'r')
+        #Creates a new list and fills each index with the stripped version of each seperate entry from the csv.
+        #Could be done like this:
+        #worklist = list(map(lambda ss: ss.strip() , worklist))
+        #Haven't used this until I really understand it. =)
+    
+    # Header rwo in CSV??
+    #line = f.readline???() ?? dont know?
+    #??heading processin
+
+    for line in f:
+        d = {}
+        worklist = [item.strip() for item in line.split("|")]
+        #This creates a dictionary with heading names as keys for each line of CSV and appends it to the list of dictionaries.
+        listofdicts.append({
+            "First Name": worklist[0],
+            "Surname": worklist[1],
+            "Date of Birth": worklist[2],
+            "Address": worklist[3],
+        })
+    return listofdicts
+
+listofdicts = load_data()
+
+
+def printDict(d):
+    """
+    The cleandict strips the null values from any dictionary sent here.
+    Put this here instead of making a new function so I can apply it to nested dictionaries directly.
+    Not sure why it isn't working!"""
+    d = {k: v for k, v in d.items() if k is not None}
+    for key, value in d.items():
         print(key, ' : ', value)
 
-def bubbleSort(data, heading):
+def _dict_key_comparator(key, a,b):
+    return a[key] > b[key]
+#def _default_comparator(a, b):
+#    return _dict_key_comparator('Forename', a, b)
+#_default_comparator = partial(_dict_key_comparator, 'Forename')
+
+def bubbleSort(data, func_comparison=operator.gt):
+    """
+    >>> bubbleSort(['c','b','a'])
+    ['a','b','c']
+    >>> bubbleSort([3,2,1])
+    [1,2,3]
+    >>> bubbleSort([3,2,1], func_comparison=operator.lt)
+    [3,2,1]
+    >>> bubbleSort([{'a': 1, 'b':2}, {'a':4, 'b':3}], lambda a, b: a['b'] > b['b'])
+    [{'a':4, 'b':3}, {'a': 1, 'b':2}]
+    """
     has_changed = True
     while has_changed == True:
       has_changed = False
       for i in range((len(data) -1)):
-        a = data[i][heading]
-        b = data[i+1][heading]
-        if a > b:
-          data[i], data [i+1] = data [i+1], data [i]
+        #a = data[i][heading]
+        #b = data[i+1][heading]
+        a = data[i]
+        b = data[i+1]
+        #if a > b:
+        if func_comparison(a, b):
+          data[i], data [i+1] = b, a  #data [i+1], data [i]
           has_changed = True
     return data
 
@@ -84,7 +118,7 @@ if __name__ == '__main__':
                 #Anytime menu becomes 'True' again, main menu screen is printed once and process restarts.
                 menu = True
             elif byfield in validin['fields']:
-                listofdicts == bubbleSort(listofdicts, byfield)
+                listofdicts == bubbleSort(listofdicts, partial(_dict_key_comparator, byfield))
                 print("Data sorted")
                 menu = True
         elif menuchoice == '2':
@@ -105,3 +139,8 @@ if __name__ == '__main__':
                 menu = True
         elif menuchoice == '4':
             quit()
+
+  #  menu_items_strings = ''.join(
+  #      f'    {key}: {value}\n'
+  #      for key, value in menu_items.items()
+  #  )
