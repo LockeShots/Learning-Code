@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Chat Client</title>
+        <meta charset="UTF-8">
+        <script>
+            window.onload = function() {
+                var socket      = new WebSocket("ws://45.152.210.255:9873/");
+
+                var text_area = document.getElementById("text_area");
+                text_area.readOnly = true;
+
+                var text_field = document.getElementById('text_field');
+                text_field.addEventListener('keydown', textEventKeyDown, true);
+                function textEventKeyDown(event) {
+                    if (event.keyCode==13) {
+                        //socket.send(text_field.value+"\n");
+                        socket.send("Turtles are not st00pid: "+text_field.value+"\n");
+                        text_field.value = "";
+                    }
+                }
+
+                function receive(msg) {
+                    //console.Log("got: " + msg.data);
+                    text_area.value = text_area.value + msg.data;
+                    text_area.scrollTop = text_area.scrollHeight;
+                }
+                socket.onmessage = receive;
+
+                //socket.onopen = function(e) { socket.send("Hello I am not Bob"+"\n"); }
+                //while (true) { socket.send(prompt()+"\n"); }
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Chat Client</h1>
+        <textarea id="text_area" style="width:300px;" rows="15"></textarea>
+        <br/>
+        <input      id="text_field" style="width:300px;"    />
+    </body>
+</html>

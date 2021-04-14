@@ -140,6 +140,10 @@ if __name__ == '__main__':
         elif menuchoice == '4':
             quit()
 
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 50fed7b... New
   #  menu_items_strings = ''.join(
   #      f'    {key}: {value}\n'
   #      for key, value in menu_items.items()
