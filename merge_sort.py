@@ -7,7 +7,11 @@ def listfromstring(datatosort):
 
 def halver(listtosplit):
     middle = len(listtosplit)//2
-    return middle
+    while middle >= 2:
+    L = listtosplit[:middle]
+    R = listtosplit[middle:]
+    halver(L)
+    halver(R)
     
 #def mergeSort(data):
     #datalist = list([i] for i in (list(data)))
