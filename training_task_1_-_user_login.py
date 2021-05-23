@@ -10,12 +10,12 @@ def password_request():
         if username == 'Allan':
             password = input('Enter Your Password: ')
         else:
-            print('wrong username')
+            print('Wrong username')
         if username == 'Allan' and password == 'butt':
             print('Correct')
             break
         else:
-            print('Incorrect')
+            print('Incorrect password')
             count += 1
     else:
         from time import sleep

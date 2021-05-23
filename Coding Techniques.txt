@@ -1,0 +1,41 @@
+Training task 1: User Login
+
+If Statements
+Variable declarations
+While loops
+Counters
+Taking user input
+
+Training task 2: Sum from File
+
+Open and read a file
+Split a list
+Convert to int
+Sum
+
+Training task 3: Divisible by 4
+
+Create list by range
+Modulo operator
+
+Training task 4: Starts with s
+
+Write to file
+If true statements
+
+Training task 5: Word Salad
+
+Import modules
+
+Training task 6: 12h to 24h
+
+Working with list indexes
+
+Training task 7: 
+
+Training task 8: 
+
+Reading multiline files
+
+Training task 9:
+
