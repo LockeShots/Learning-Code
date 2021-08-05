@@ -1,7 +1,7 @@
-#Ask the user for a username and then ask for the password.
-#If the username and password are correct give a message approved and exit.
-#After 3 incorrect attempts, print denied and exit.
-#Extension: delay for 2 seconds on incorrect password
+#Reads list of stored logins / passwords from .csv file and asks
+#user if they would like to sign up or log in.
+#If user logs in, accept any username not already in database.
+#If user signs in, check if username exists, and if password matches.
 
 import csv
 
